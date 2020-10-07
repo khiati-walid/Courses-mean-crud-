@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-md-4 register-course">
+      <!-- form card register -->
+      <div class="card-body">
+        <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="inputName">Name</label>
+            <input class="form-control" type="text" formControlName="name">
+            <!-- error -->
+            <div class="invalid-feedback d-block" *ngIf="submitted && myForm.name.errors?.required">
+              Name is required.
+            </div>
+          </div>
+  
+          
+  
+          <div class="form-group">
+            <label for="inputPassword3">Module</label>
+            <select class="custom-select form-control" (change)="updateProfile($event.target.value)"
+              formControlName="module">
+              <option value="">Choose...</option>
+              <option *ngFor="let courseProfile of CourseProfile" value="{{courseProfile}}">{{courseProfile}}
+              </option>
+            </select>
+            <!-- error -->
+            <div class="invalid-feedback d-block" *ngIf="submitted && myForm.module.errors?.required">
+              Choose Module.
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="inputVerify3">Description</label>
+            <input class="form-control" type="text" formControlName="description">
+            <!-- error -->
+            <div class="invalid-feedback d-block" *ngIf="submitted && myForm.description.errors?.required">
+              Enter Description.
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <button class="btn btn-success btn-lg btn-block" type="submit">Add Course</button>
+          </div>
+        </form>
+  
+      </div>
+    </div><!-- form card register -->
+  </div>

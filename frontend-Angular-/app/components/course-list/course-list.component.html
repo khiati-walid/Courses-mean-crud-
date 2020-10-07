@@ -1,0 +1,33 @@
+<div class="container">
+    <!-- No data message -->
+    <p *ngIf="Course.length <= 0" class="no-data text-center">There is no course added yet!</p>
+  
+    <!-- Course list -->
+    <table class="table table-dark table-bordered" *ngIf="Course.length > 0">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Course ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Module</th>
+          <th scope="col">Description</th>
+          <th scope="col center">Update</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let course of Course; let i = index">
+          <th scope="row">{{course._id}}</th>
+          <td>{{course.name}}</td>
+          <td>{{course.module}}</td>
+          <td>{{course.description}}</td>
+          <td class="text-center edit-block">
+            <span class="edit" [routerLink]="['/edit-course/', course._id]">
+              <button type="button" class="btn btn-secondary mr-2 btn-sm">Edit</button>
+            </span>
+            <span class="delete" (click)="removeCourse(course, i)">
+              <button type="button" class="btn btn-danger btn-sm">Delete</button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
